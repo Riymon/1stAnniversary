@@ -41,13 +41,15 @@
 .header {
   text-align: center;
   margin-bottom: 18px;
-  animation: fadeIn 2s ease;
+  /* animation: fadeIn 2s ease; */
   background: rgba(255,255,255,0.35);
   border-radius: 0.8rem;
   padding: 12px 0;
   box-shadow: 0 2px 8px rgba(238,156,167,0.12);
 }
-
+.header h1{
+ animation: bottomToCenterGrow 1.5s ease-in-out;
+}
 h1 {
   font-size: 32px;
   margin-bottom: 6px;
@@ -292,6 +294,7 @@ h1 {
     padding-top: 2vh;
     width: 100vw;
     min-height: 60.85vw;
+    margin-left: -10rem;
   }
   .container {
     padding: 8px;
@@ -353,4 +356,15 @@ h1 {
   50% { transform: translateY(-60px) scale(1.2) rotate(10deg); opacity: 1; }
   80% { opacity: 1; }
   100% { transform: translateY(-120px) scale(1) rotate(-10deg); opacity: 0; }
+}
+
+  @keyframes bottomToCenterGrow {
+    from {
+      transform: translateY(100%) scale(20);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0) scale(1);
+      opacity: 2;
+    }
 }

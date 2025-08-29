@@ -17,7 +17,8 @@ function App() {
   const [daysTogether, setDaysTogether] = useState(365)
   const [selectedImage, setSelectedImage] = useState(null)
   const [selectedMessage, setSelectedMessage] = useState(null)
-  const heartsContainerRef = useRef(null)
+  const [hearts, setHearts] = useState([]);
+  const [butterflies, setButterflies] = useState([]);
 
   const messages = [
     "A year of laughter, love, and beautiful memories. Every moment with you is a treasure I hold dear to my heart. Here's to many more years together!",
@@ -51,37 +52,24 @@ function App() {
     calculateDaysTogether()
   }, [])
 
-  useEffect(() => {
-    const createHearts = () => {
-      if (!heartsContainerRef.current) return
-      heartsContainerRef.current.innerHTML = ''
-      const heartCount = 15
-      for (let i = 0; i < heartCount; i++) {
-        const heart = document.createElement('div');
-        heart.innerHTML = '❤️';
-        heart.classList.add('heart');
-        heart.style.left = Math.random() * 50 + '%';
-        heart.style.animationDelay = Math.random() * 5 + 's';
-        heartsContainerRef.current.appendChild(heart);
-      }
-    }
-    createHearts()
-  }, [])
-
-const butterfliesContainerRef = useRef(null);
-
 useEffect(() => {
-  if (!butterfliesContainerRef.current) return;
-  butterfliesContainerRef.current.innerHTML = '';
-  const butterflyCount = 8;
-  for (let i = 0; i < butterflyCount; i++) {
-    const butterfly = document.createElement('div');
-    butterfly.innerHTML = '🦋';
-    butterfly.classList.add('butterfly');
-    butterfly.style.left = Math.random() * 100 + '%';
-    butterfly.style.animationDelay = Math.random() * 7 + 's';
-    butterfliesContainerRef.current.appendChild(butterfly);
-  }
+  // Hearts
+  const heartCount = 10; // reduce number for performance
+  const heartArray = Array.from({ length: heartCount }, (_, i) => ({
+    left: Math.random() * 80 + '%',
+    delay: Math.random() * 5 + 's',
+    key: i,
+  }));
+  setHearts(heartArray);
+
+  // Butterflies
+  const butterflyCount = 5; // reduce number for performance
+  const butterflyArray = Array.from({ length: butterflyCount }, (_, i) => ({
+    left: Math.random() * 80 + '%',
+    delay: Math.random() * 7 + 's',
+    key: i,
+  }));
+  setButterflies(butterflyArray);
 }, []);
 
 
@@ -104,6 +92,28 @@ useEffect(() => {
   return (
     <div className="anniversary-app">
       <div className="container">
+        <div className="hearts">
+  {hearts.map(h => (
+    <div
+      className="heart"
+      key={h.key}
+      style={{ left: h.left, animationDelay: h.delay, position: 'absolute' }}
+    >
+      ❤️
+    </div>
+  ))}
+</div>
+<div className="butterflies">
+  {butterflies.map(b => (
+    <div
+      className="butterfly"
+      key={b.key}
+      style={{ left: b.left, animationDelay: b.delay, position: 'absolute' }}
+    >
+      🦋
+    </div>
+  ))}
+</div>
         <div className="header">
           <h1>Happy 1st Anniversary!</h1>
           <div className="date">September 8, 2024 - September 8, 2025</div>
@@ -126,8 +136,6 @@ useEffect(() => {
           <span id="days">{daysTogether}</span> days together
         </div>
         
-        <div className="hearts" ref={heartsContainerRef}></div>
-        <div className="butterflies" ref={butterfliesContainerRef}></div>
       </div>
 
       {/* Image Modal */}

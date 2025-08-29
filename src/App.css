@@ -41,14 +41,43 @@
 .header {
   text-align: center;
   margin-bottom: 18px;
-  /* animation: fadeIn 2s ease; */
+  animation: fadeIn 2s ease;
   background: rgba(255,255,255,0.35);
   border-radius: 0.8rem;
   padding: 12px 0;
   box-shadow: 0 2px 8px rgba(238,156,167,0.12);
 }
 .header h1{
+  animation: bottomToCenterGrow2 0.5s ease-in-out;
+}
+.header h1:hover{
+ transform: translateY(-10px);
+ font-style: italic;
+ color: #8f091f;
  animation: bottomToCenterGrow 1.5s ease-in-out;
+ transition: bottomToCenterGrow 1.5s ease-in-out;
+ border-bottom: 0.2rem solid #8f091f ;
+}
+
+@keyframes bottomToCenterGrow2 {
+  from {
+    transform: translateY(100%) scale(5);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 2;
+  }
+}
+  @keyframes bottomToCenterGrow {
+    from {
+      transform: translateY(100%) scale(20);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0) scale(1);
+      opacity: 2;
+    }
 }
 h1 {
   font-size: 32px;

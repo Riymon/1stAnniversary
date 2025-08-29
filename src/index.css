@@ -60,6 +60,7 @@ button:focus-visible {
   :root {
     color: #213547;
     background-color: #ffffff;
+
   }
   a:hover {
     color: #747bff;
@@ -68,24 +69,8 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-
-.header h1:hover{
- transform: translateY(-10px);
- font-style: italic;
- color: #8f091f;
- animation: bottomToCenterGrow2 1.5s ease-in-out;
- border-bottom: 0.2rem solid #8f091f ;
-}
-
-
-
-@keyframes bottomToCenterGrow2 {
-  from {
-    transform: translateY(100%) scale(5);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0) scale(1);
-    opacity: 2;
+@media (max-width: 650px) {
+  :root {
+    margin-left: 0.5rem;
   }
 }
